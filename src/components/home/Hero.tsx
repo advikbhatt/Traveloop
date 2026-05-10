@@ -5,24 +5,24 @@ import Image from "next/image";
 
 const previewCards = [
   { 
-    title: "Active Volcano Walk", 
-    desc: "Walk to the edge of Mount Bromo's active crater.",
-    url: "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=800&q=80"
+    title: "Robber's Cave", 
+    desc: "Explore ancient river caves and cold streams.",
+    url: "https://images.unsplash.com/photo-1616036740257-9449ea1f6605?auto=format&fit=crop&w=800&q=80"
   },
   { 
-    title: "Jeep Adventure", 
-    desc: "Experience the vast Sea of Sand by 4x4.",
-    url: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=800&q=80"
+    title: "Mussoorie Hills", 
+    desc: "Witness the queen of hills and clear skies.",
+    url: "https://images.unsplash.com/photo-1626621340025-73c76b1c3b3b?auto=format&fit=crop&w=800&q=80"
   },
   { 
-    title: "Sunrise View", 
-    desc: "Witness the golden hour over the peaks.",
-    url: "https://plus.unsplash.com/premium_photo-1690552679122-1660e10f73a5?auto=format&fit=crop&w=800&q=80"
+    title: "Himalaya Peak", 
+    desc: "Breathtaking sunrises over snow mountains.",
+    url: "https://images.unsplash.com/photo-1586163240128-0213c8a2e594?auto=format&fit=crop&w=800&q=80"
   },
   { 
-    title: "Local Culture", 
-    desc: "Connect with the heart of East Java.",
-    url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
+    title: "Local Temples", 
+    desc: "Experience the serenity of Dehradun valley.",
+    url: "https://images.unsplash.com/photo-1596998804349-4e169f595cd9?auto=format&fit=crop&w=800&q=80"
   }
 ];
 
@@ -32,8 +32,8 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="https://images.unsplash.com/photo-1602154663343-89fe0bf541ab?q=80&w=1920&auto=format&fit=crop" 
-          alt="Mount Bromo Landscape"
+          src="https://images.unsplash.com/photo-1626621340025-73c76b1c3b3b?q=80&w=1920&auto=format&fit=crop" 
+          alt="Dehradun Hills Landscape"
           fill
           className="object-cover brightness-[0.7]"
           sizes="100vw"
@@ -45,11 +45,11 @@ export default function Hero() {
 
       <div className="relative z-10 flex flex-col items-center text-center max-w-6xl">
         <div className="px-6 py-2 rounded-full bg-black/20 backdrop-blur-md border border-white/10 text-white text-[13px] font-medium mb-12 tracking-wide uppercase">
-          East Java's Natural Wonder
+          Uttarakhand's Serene Gateway
         </div>
         <h1 className="text-7xl md:text-[100px] font-medium text-white mb-8 tracking-tighter leading-[0.9] drop-shadow-2xl">
-          Unforgettable Mount Bromo <br />
-          <span className="font-medium opacity-90">Sunrise Experience</span>
+          Enchanting Dehradun <br />
+          <span className="font-medium opacity-90">Valley Experience</span>
         </h1>
       </div>
 
@@ -75,11 +75,11 @@ export default function Hero() {
                 50+
               </div>
             </div>
-            <span className="text-white text-base font-bold tracking-tight">People Joined</span>
+            <span className="text-white text-base font-bold tracking-tight">Explorers Joined</span>
           </div>
           
           <p className="text-white/80 text-[15px] leading-relaxed mb-10 font-medium max-w-[320px]">
-            Travel through volcanic landscapes, golden skies, and timeless beauty with expertly guided Mount Bromo tours.
+            Discover mist-laden mountains, lush valleys, and hidden cave pathways through expertly organized Dehradun expeditions.
           </p>
           
           <Link href="/login" className="flex items-center gap-4 group/btn cursor-pointer">

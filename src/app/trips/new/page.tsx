@@ -45,7 +45,7 @@ export default function CreateTrip() {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g., Euro Summer 2026"
+              placeholder="e.g., Uttarakhand Getaway 2026"
               className="w-full p-4 bg-bg-secondary border border-white/10 rounded-xl text-text-primary focus:outline-none focus:border-accent-primary focus:ring-3 focus:ring-accent-primary/20 transition-all"
               required
             />

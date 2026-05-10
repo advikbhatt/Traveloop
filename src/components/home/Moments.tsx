@@ -20,10 +20,10 @@ export default function Moments() {
         </div>
         <h2 className="text-4xl md:text-6xl font-bold text-black mb-6 tracking-tight">
           Unforgettable <span className="text-gray-400">Moments in the</span> <br />
-          Heart of Mount Bromo
+          Heart of Dehradun
         </h2>
         <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">
-          Experience breathtaking sunrises, explore volcanic landscapes, and create memories at one of Indonesia's most iconic destinations.
+          Experience breathtaking hillscapes, explore peaceful ancient valley landmarks, and create memories at India's most welcoming gateway to the Himalayas.
         </p>
       </div>
 
@@ -47,8 +47,8 @@ export default function Moments() {
             className="object-cover group-hover:scale-110 transition-transform duration-700" 
           />
           <div className="absolute bottom-8 left-8 bg-white p-6 rounded-3xl shadow-xl border border-gray-100 max-w-xs">
-            <h4 className="text-black font-bold mb-2">Sea of Sand Exploration</h4>
-            <p className="text-gray-400 text-xs mb-4">Cross the vast volcanic desert by 4x4 jeep or on foot.</p>
+            <h4 className="text-black font-bold mb-2">Valley Exploration</h4>
+            <p className="text-gray-400 text-xs mb-4">Navigate the lush natural ravines and pathways on foot or bike.</p>
             <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-black">↗</div>
           </div>
         </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+import Navbar from "@/components/Navbar";
+
 export const metadata: Metadata = {
   title: "Traveloop | Personalized Travel Planning Made Easy",
   description: "Plan, organize, and share your perfect multi-city trips with Traveloop.",
@@ -14,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <Navbar />
         <main className="app-container">
           {children}
         </main>

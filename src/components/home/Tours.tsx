@@ -6,31 +6,31 @@ import Image from "next/image";
 const tours = [
   {
     id: 1,
-    title: "Sunrise Explorer",
-    desc: "Experience Mount Bromo's iconic sunrise with a smooth, guided tour.",
-    price: "$39 / person",
-    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
+    title: "Hill & Caves Explorer",
+    desc: "Experience the famous cold water caves and Robber's Creek with a guided eco-tour.",
+    price: "₹1,500 / person",
+    image: "https://images.unsplash.com/photo-1588592783288-9c844d0e34c1?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 2,
-    title: "Adventure Trail",
-    desc: "Go deeper into Bromo with crater hikes and off-road jeep exploration.",
-    price: "$69 / person",
-    image: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=400&q=80"
+    title: "Mussoorie Day Pass",
+    desc: "Take the scenic route to Mall Road and Kempty Falls in an SUV expedition.",
+    price: "₹3,200 / person",
+    image: "https://images.unsplash.com/photo-1626621340025-73c76b1c3b3b?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 3,
-    title: "Night & Stars Escape",
-    desc: "A premium night-to-sunrise experience for stargazers and photographers.",
-    price: "$109 / person",
-    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80"
+    title: "Spiritual Retreat",
+    desc: "A mindful trip encompassing Mindrolling Monastery and Tapkeshwar Temple visits.",
+    price: "₹1,800 / person",
+    image: "https://images.unsplash.com/photo-1596998804349-4e169f595cd9?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 4,
-    title: "Private Bromo Journey",
-    desc: "A fully personalized Bromo adventure with private transport and guide.",
-    price: "$149 / person",
-    image: "https://images.unsplash.com/photo-1602154663343-89fe0bf541ab?auto=format&fit=crop&w=400&q=80"
+    title: "Private Valley Journey",
+    desc: "Fully customized Himalayan valley immersion with direct local pickup & stay.",
+    price: "₹8,500 / group",
+    image: "https://images.unsplash.com/photo-1586163240128-0213c8a2e594?auto=format&fit=crop&w=400&q=80"
   }
 ];
 
@@ -39,15 +39,15 @@ export default function Tours() {
     <section id="packages" className="py-24 px-6 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 bg-gray-50 text-black text-xs font-bold mb-6">
-          <span>Bromo Tours</span>
+          <span>Expedition Packs</span>
           <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center text-[10px]">✨</div>
         </div>
         <h2 className="text-4xl md:text-6xl font-bold text-black mb-6 tracking-tight">
-          Discover the Best Bromo <span className="text-gray-400">Adventures</span> <br />
-          for Every Kind of Traveler
+          Discover the Dehradun <span className="text-gray-400">Gateway</span> <br />
+          for Every Kind of Explorer
         </h2>
         <p className="text-gray-500 max-w-2xl mx-auto leading-relaxed">
-          Carefully crafted tour packages for every traveler whether you're chasing sunrise views, volcanic trails, or night-sky magic.
+          Curated tour routes ranging from historic cave paths, misted waterfall hikes, and serene spiritual trails.
         </p>
       </div>
 
@@ -55,7 +55,7 @@ export default function Tours() {
         {/* Left Featured Card */}
         <div className="relative rounded-[3rem] overflow-hidden min-h-[600px] group row-span-2">
           <Image 
-            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" 
+            src="https://images.unsplash.com/photo-1616036740257-9449ea1f6605?auto=format&fit=crop&w=800&q=80" 
             alt="Main Tour" 
             fill 
             sizes="(max-width: 768px) 100vw, 800px"
@@ -64,7 +64,7 @@ export default function Tours() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
           <div className="absolute bottom-12 left-12 right-12">
             <h3 className="text-white text-5xl font-bold leading-tight mb-4">
-              Discover the <br /> Untamed <br /> Beauty of Bromo
+              Experience the <br /> Purest <br /> Essence of Valley
             </h3>
           </div>
         </div>

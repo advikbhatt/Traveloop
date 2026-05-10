@@ -7,9 +7,9 @@ import { getUserTrips, Trip } from "@/lib/db-services";
 import { seedDummyData } from "@/lib/seed";
 
 const popularCities = [
-  { name: "Bromo Crater Hike", image: "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=400&q=80", tag: "Adventure" },
-  { name: "Ijen Blue Fire", image: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=400&q=80", tag: "Nature" },
-  { name: "Tumpak Sewu Falls", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80", tag: "Experience" },
+  { name: "Lachhiwala Picnic Spot", image: "https://images.unsplash.com/photo-1588592783288-9c844d0e34c1?auto=format&fit=crop&w=400&q=80", tag: "Nature" },
+  { name: "Tapkeshwar Temple", image: "https://images.unsplash.com/photo-1596998804349-4e169f595cd9?auto=format&fit=crop&w=400&q=80", tag: "Spiritual" },
+  { name: "George Everest Peak", image: "https://images.unsplash.com/photo-1626621340025-73c76b1c3b3b?auto=format&fit=crop&w=400&q=80", tag: "Trek" },
 ];
 
 export default function Dashboard() {
@@ -28,22 +28,6 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#F6F6F6] font-display">
-      {/* Dashboard Nav */}
-      <nav className="bg-white border-b border-stroke px-10 py-6 flex items-center justify-between sticky top-0 z-40">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-white font-extrabold text-xl tracking-tighter">B</span>
-          </div>
-          <span className="text-black text-2xl font-extrabold tracking-tighter">BromoRise</span>
-        </Link>
-        
-        <div className="flex items-center gap-6">
-          <div className="w-10 h-10 rounded-full bg-gray-100 border border-stroke overflow-hidden">
-             <Image src="https://i.pravatar.cc/100?u=42" alt="Profile" width={40} height={40} />
-          </div>
-        </div>
-      </nav>
-
       <div className="max-w-7xl mx-auto px-10 py-12">
         <header className="flex justify-between items-end mb-16">
           <div>

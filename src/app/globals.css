@@ -33,6 +33,13 @@
     min-height: 100vh;
   }
   
+  .app-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px; /* Accommodate fixed navbar */
+  }
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-bold tracking-tight;
   }
