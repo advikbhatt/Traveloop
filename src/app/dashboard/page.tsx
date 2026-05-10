@@ -1,13 +1,10 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./page.module.css";
-
-// Mock data for the dashboard
-const recentTrips = [
-  { id: "1", name: "Euro Summer 2026", dates: "Jun 10 - Jul 05", destinations: 4, cover: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=400&q=80" },
-  { id: "2", name: "Japan Autumn", dates: "Nov 01 - Nov 15", destinations: 3, cover: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=400&q=80" },
-];
+import { getUserTrips, Trip } from "@/lib/db-services";
+import { seedDummyData } from "@/lib/seed";
 
 const popularCities = [
   { name: "Paris, France", image: "https://images.unsplash.com/photo-1502602898657-3e907a5ea82c?auto=format&fit=crop&w=300&q=80" },
@@ -16,6 +13,21 @@ const popularCities = [
 ];
 
 export default function Dashboard() {
+  const [trips, setTrips] = useState<Trip[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadData() {
+      // Seed dummy data if needed
+      await seedDummyData();
+      
+      const userTrips = await getUserTrips();
+      setTrips(userTrips);
+      setLoading(false);
+    }
+    loadData();
+  }, []);
+
   return (
     <div className={styles.dashboard}>
       <header className={styles.header}>
@@ -32,30 +44,41 @@ export default function Dashboard() {
 
       <section className={styles.section}>
         <div className={styles.sectionHeader}>
-          <h2>Upcoming Trips</h2>
-          <Link href="/trips">View all</Link>
+          <h2>Your Upcoming Trips</h2>
+          <Link href="/trips" className="btn-secondary">View All</Link>
         </div>
-        <div className={styles.tripGrid}>
-          {recentTrips.map((trip) => (
-            <div key={trip.id} className={`glass-panel ${styles.tripCard}`}>
-              <div 
-                className={styles.tripCover} 
-                style={{ backgroundImage: `url(${trip.cover})` }}
-              />
-              <div className={styles.tripInfo}>
-                <h3>{trip.name}</h3>
-                <p className={styles.tripDates}>{trip.dates}</p>
-                <div className={styles.tripMeta}>
-                  <span>{trip.destinations} Destinations</span>
+
+        {loading ? (
+          <p>Loading your trips...</p>
+        ) : (
+          <div className={styles.tripGrid}>
+            {trips.length > 0 ? trips.map((trip) => (
+              <div key={trip.id} className={`glass-panel ${styles.tripCard}`}>
+                <div 
+                  className={styles.tripCover} 
+                  style={{ backgroundImage: `url(${trip.coverPhoto})` }}
+                />
+                <div className={styles.tripInfo}>
+                  <h3>{trip.name}</h3>
+                  <p className={styles.tripDates}>{trip.dates}</p>
+                  <div className={styles.tripMeta}>
+                    <span>{trip.destinationCount} Destinations</span>
+                  </div>
+                  <div style={{ marginTop: '10px', display: 'flex', gap: '10px' }}>
+                    <Link href={`/trips/${trip.id}`} className="btn-secondary" style={{ fontSize: '0.8rem', padding: '6px 12px' }}>View</Link>
+                    <Link href={`/trips/${trip.id}/build`} className="btn-secondary" style={{ fontSize: '0.8rem', padding: '6px 12px' }}>Edit</Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-          <Link href="/trips/new" className={`glass-panel ${styles.newTripCard}`}>
-            <div className={styles.newTripIcon}>+</div>
-            <p>Create a new journey</p>
-          </Link>
-        </div>
+            )) : (
+              <p>No trips yet. Start planning one!</p>
+            )}
+            <Link href="/trips/new" className={`glass-panel ${styles.newTripCard}`}>
+              <div className={styles.newTripIcon}>+</div>
+              <p>Create a new journey</p>
+            </Link>
+          </div>
+        )}
       </section>
 
       <section className={styles.section}>

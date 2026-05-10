@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
+import { createTrip } from "@/lib/db-services";
 
 export default function CreateTrip() {
   const router = useRouter();
@@ -14,9 +15,19 @@ export default function CreateTrip() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Connect to Prisma API
-    // Redirect to the itinerary builder for the new trip (mock ID '4')
-    router.push("/trips/4/build");
+    const id = await createTrip({
+      name,
+      dates: `${startDate} to ${endDate}`,
+      destinationCount: 1,
+      status: 'planning',
+      coverPhoto: coverPhoto || 'https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=800&q=80',
+      userId: 'mock-user-id'
+    });
+    if (id) {
+      router.push(`/trips/${id}/build`);
+    } else {
+      alert("Failed to create trip");
+    }
   };
 
   return (
