@@ -9,6 +9,16 @@ export interface Trip {
   status: 'upcoming' | 'planning' | 'past';
   coverPhoto: string;
   userId: string;
+  totalBudget?: number;
+}
+
+export interface Expense {
+  id: string;
+  tripId: string;
+  name: string;
+  category: 'Transport' | 'Accommodation' | 'Activities' | 'Meals' | 'Other';
+  amount: number;
+  dateAdded: string;
 }
 
 export interface Stop {
@@ -120,6 +130,43 @@ export async function addActivity(activityData: Omit<Activity, "id">): Promise<s
     return docRef.id;
   } catch (error) {
     console.error("Error adding activity:", error);
+    return null;
+  }
+}
+
+// Budget Services
+export async function updateTripBudget(tripId: string, budget: number): Promise<boolean> {
+  try {
+    const tripRef = doc(db, "trips", tripId);
+    await updateDoc(tripRef, { totalBudget: budget });
+    return true;
+  } catch (error) {
+    console.error("Error updating budget:", error);
+    return false;
+  }
+}
+
+export async function getExpensesForTrip(tripId: string): Promise<Expense[]> {
+  try {
+    const q = query(collection(db, "expenses"), where("tripId", "==", tripId));
+    const querySnapshot = await getDocs(q);
+    const expenses: Expense[] = [];
+    querySnapshot.forEach((doc: any) => {
+      expenses.push({ id: doc.id, ...doc.data() } as Expense);
+    });
+    return expenses;
+  } catch (error) {
+    console.error("Error fetching expenses:", error);
+    return [];
+  }
+}
+
+export async function addExpense(expenseData: Omit<Expense, "id">): Promise<string | null> {
+  try {
+    const docRef = await addDoc(collection(db, "expenses"), expenseData);
+    return docRef.id;
+  } catch (error) {
+    console.error("Error adding expense:", error);
     return null;
   }
 }

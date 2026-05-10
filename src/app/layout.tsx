@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/common/SmoothScroll";
 
+import Navbar from "@/components/Navbar";
+
 export const metadata: Metadata = {
   title: "Traveloop | Personalized Travel Planning Made Easy",
   description: "Plan, organize, and share your perfect multi-city trips with Traveloop.",

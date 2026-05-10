@@ -38,11 +38,11 @@ export default function Dashboard() {
           </div>
           <span className="text-black text-2xl font-extrabold tracking-tighter">Traveloop</span>
         </Link>
-        
+
         <div className="flex items-center gap-6">
           <Link href="/profile" className="text-sm font-bold text-black/60 hover:text-black transition-colors">Settings</Link>
           <Link href="/profile" className="w-10 h-10 rounded-full bg-gray-100 border border-stroke overflow-hidden hover:ring-2 hover:ring-black transition-all">
-             <Image src="https://i.pravatar.cc/100?u=42" alt="Profile" width={40} height={40} />
+            <Image src="https://i.pravatar.cc/100?u=42" alt="Profile" width={40} height={40} />
           </Link>
         </div>
       </nav>
@@ -80,12 +80,12 @@ export default function Dashboard() {
               {trips.map((trip) => (
                 <div key={trip.id} className="group bg-white rounded-[3rem] overflow-hidden border border-stroke shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                   <div className="relative h-64 overflow-hidden">
-                    <Image 
-                      src={trip.coverPhoto || "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=600&q=80"} 
-                      alt={trip.name} 
-                      fill 
+                    <Image
+                      src={trip.coverPhoto || "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=600&q=80"}
+                      alt={trip.name}
+                      fill
                       sizes="(max-width: 768px) 100vw, 400px"
-                      className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-black">
                       Upcoming
@@ -103,7 +103,7 @@ export default function Dashboard() {
                   </div>
                 </div>
               ))}
-              
+
               <Link href="/trips/new" className="h-full min-h-[400px] rounded-[3rem] border-2 border-dashed border-stroke flex flex-col items-center justify-center gap-4 group hover:bg-white hover:border-black transition-all">
                 <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-4xl group-hover:bg-black group-hover:text-white transition-all">+</div>
                 <p className="text-paragraph font-bold uppercase tracking-widest text-xs">Plan New Adventure</p>
@@ -124,8 +124,8 @@ export default function Dashboard() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {popularCities.map((city, index) => (
               <div key={index} className="relative h-[480px] rounded-[3rem] overflow-hidden group cursor-pointer shadow-2xl">
-                <Image 
-                  src={city.image} 
+                <Image
+                  src={city.image}
                   alt={city.name}
                   fill
                   sizes="(max-width: 768px) 100vw, 400px"

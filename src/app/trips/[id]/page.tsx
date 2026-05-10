@@ -84,30 +84,57 @@ export default function ItineraryView() {
         </div>
       </div>
 
+      <div className="max-w-4xl mx-auto px-6 mb-12">
+         {/* Dynamic Quick Finance Summary Injection */}
+         {(() => {
+            const totalCost = itineraryDays.reduce((acc, day) => {
+               return acc + day.activities.reduce((sub, act) => {
+                  if (!act.cost || act.cost === 'Free') return sub;
+                  const num = parseInt(act.cost.replace(/[^0-9]/g, ''), 10);
+                  return sub + (isNaN(num) ? 0 : num);
+               }, 0);
+            }, 0);
+            
+            if (totalCost <= 0) return null;
+            
+            return (
+               <div className="bg-white border border-success/20 p-6 rounded-2xl flex items-center justify-between shadow-sm shadow-success/10 animate-in fade-in">
+                  <div>
+                     <p className="text-text-paragraph text-[10px] font-bold uppercase tracking-widest">Activity Cost Estimator</p>
+                     <h3 className="text-3xl font-extrabold text-bg-black mt-1">₹{totalCost.toLocaleString()}</h3>
+                  </div>
+                  <Link href={`/trips/${params.id}/budget`} className="btn-primary px-6 text-xs">
+                     Full Analytics →
+                  </Link>
+               </div>
+            );
+         })()}
+      </div>
+
       <div className="max-w-4xl mx-auto px-6 flex flex-col gap-16">
         {itineraryDays.map((day, index) => (
-          <div key={index} className="relative pl-8 md:pl-12 border-l border-white/10">
+          <div key={index} className="relative pl-8 md:pl-12 border-l border-stroke">
             {/* Timeline Dot */}
-            <div className="absolute top-0 left-[-6px] w-3 h-3 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,122,255,0.8)]"></div>
+            <div className="absolute top-0 left-[-6px] w-3 h-3 rounded-full bg-accent-primary"></div>
             
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-8">
               <div>
-                <h2 className="text-3xl font-bold mb-1">{day.day}</h2>
-                <span className="text-accent-primary font-medium text-sm tracking-wide uppercase">{day.date}</span>
+                <h2 className="text-3xl font-bold mb-1 text-bg-black">{day.day}</h2>
+                <span className="text-accent-primary font-bold text-sm tracking-wide uppercase">{day.date}</span>
               </div>
-              <div className="bg-white/5 px-4 py-1.5 rounded-full border border-white/10 text-text-secondary text-sm font-semibold">
+              <div className="bg-bg-secondary px-4 py-1.5 rounded-full border border-stroke text-text-paragraph text-sm font-bold">
                 {day.city}
               </div>
             </div>
 
             <div className="flex flex-col gap-4">
               {day.activities.map((act, i) => (
-                <div key={i} className="glass-panel flex flex-col sm:flex-row gap-4 p-5 rounded-2xl hover:bg-white/5 transition-all group">
-                  <div className="w-full sm:w-24 text-text-tertiary text-sm font-mono pt-1">{act.duration}</div>
+                <div key={i} className="bg-white border border-stroke shadow-sm flex flex-col sm:flex-row gap-4 p-5 rounded-2xl hover:bg-bg-secondary transition-all group">
+                  <div className="w-full sm:w-24 text-text-paragraph text-sm font-bold pt-1">{act.duration}</div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-bold mb-2 group-hover:text-accent-primary transition-colors">{act.name}</h3>
+                    <h3 className="text-lg font-bold mb-2 text-bg-black group-hover:text-accent-primary transition-colors">{act.name}</h3>
                     <div className="flex flex-wrap gap-2">
-                      <span className="px-3 py-0.5 rounded-full bg-accent-secondary/10 text-accent-secondary border border-accent-secondary/20 text-[0.7rem] font-bold uppercase tracking-wider">
+                      <span className="px-3 py-0.5 rounded-full bg-bg-secondary text-bg-black border border-stroke text-[0.7rem] font-bold uppercase tracking-wider">
                         {act.type}
                       </span>
                       {act.cost !== "Free" && (
@@ -120,8 +147,8 @@ export default function ItineraryView() {
                 </div>
               ))}
               {day.activities.length === 0 && (
-                <div className="py-6 px-4 bg-white/5 border border-dashed border-white/10 rounded-2xl text-center">
-                  <p className="text-text-tertiary italic">No activities planned yet.</p>
+                <div className="py-6 px-4 bg-bg-secondary border border-dashed border-stroke rounded-2xl text-center">
+                  <p className="text-text-paragraph font-medium italic">No activities planned yet.</p>
                 </div>
               )}
             </div>

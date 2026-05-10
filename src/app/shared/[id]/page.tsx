@@ -4,21 +4,21 @@ import Link from "next/link";
 
 // Mock data (Read-only version of the itinerary)
 const tripInfo = {
-  name: "Euro Summer 2026",
-  dates: "Jun 10 - Jul 05",
-  cover: "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?auto=format&fit=crop&w=1200&q=80",
-  author: "Alex Explorer",
-  stopsCount: 4
+  name: "Uttarakhand Gateway 2026",
+  dates: "Dec 15 - Dec 22",
+  cover: "https://images.unsplash.com/photo-1626621340025-73c76b1c3b3b?auto=format&fit=crop&w=1200&q=80",
+  author: "Nikhil Singh",
+  stopsCount: 2
 };
 
 const itineraryDays = [
   {
     day: "Day 1",
-    date: "Wed, Jun 10",
-    city: "Paris, France",
+    date: "Mon, Dec 15",
+    city: "Dehradun, India",
     activities: [
-      { time: "10:00 AM", name: "Arrival at CDG", type: "Transport" },
-      { time: "2:00 PM", name: "Eiffel Tower Summit", type: "Sightseeing" },
+      { time: "09:00 AM", name: "Land at Jolly Grant Airport", type: "Transport" },
+      { time: "02:00 PM", name: "Visit Robber's Cave", type: "Sightseeing" },
     ]
   }
 ];

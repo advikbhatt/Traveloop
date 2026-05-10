@@ -7,7 +7,7 @@ const stats = [
   { label: "Total Users", value: "1,248" },
   { label: "Trips Created", value: "3,892" },
   { label: "Active Trips", value: "450" },
-  { label: "Popular Destination", value: "Paris, FR" },
+  { label: "Popular Destination", value: "Dehradun, IN" },
 ];
 
 const recentUsers = [
@@ -20,7 +20,6 @@ export default function AdminDashboard() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-12 animate-in fade-in duration-500">
       <header className="mb-12 flex flex-col gap-4">
-        <Link href="/dashboard" className="text-text-tertiary hover:text-white transition-colors text-sm font-medium">← Back to App</Link>
         <div>
           <h1 className="gradient-text text-4xl mb-1">Admin Analytics</h1>
           <p className="text-text-secondary text-lg">Platform usage and metrics</p>

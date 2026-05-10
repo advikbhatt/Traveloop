@@ -1,19 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { auth } from "@/lib/firebase";
 import { useRouter } from "next/navigation";
 import { onAuthStateChanged, User } from "firebase/auth";
-import { 
-  User as UserIcon, 
-  MapPin, 
-  Calendar, 
-  Clock, 
-  ChevronRight, 
-  Camera, 
-  Edit3, 
+import {
+  User as UserIcon,
+  MapPin,
+  Calendar,
+  Clock,
+  ChevronRight,
+  Camera,
+  Edit3,
   LogOut,
   ChevronLeft
 } from "lucide-react";
@@ -78,10 +79,10 @@ export default function ProfilePage() {
           <div className="relative group">
             <div className="w-64 h-64 rounded-full overflow-hidden border-8 border-white shadow-2xl relative">
               {user?.photoURL ? (
-                <Image 
-                  src={user.photoURL} 
-                  alt="Profile" 
-                  fill 
+                <Image
+                  src={user.photoURL}
+                  alt="Profile"
+                  fill
                   sizes="256px"
                   className="object-cover"
                 />
@@ -99,7 +100,7 @@ export default function ProfilePage() {
           <div className="flex-1 relative">
             <div className="bg-white rounded-[3.5rem] p-10 shadow-xl border border-stroke relative overflow-hidden">
               <div className="absolute top-0 right-0 p-8">
-                <button 
+                <button
                   onClick={handleSave}
                   disabled={isSaving}
                   className={`flex items-center gap-2 px-6 py-3 rounded-full border transition-all font-bold text-xs ${isSaving ? 'bg-bg-secondary cursor-not-allowed' : 'border-stroke hover:bg-bg-secondary'}`}
@@ -113,9 +114,9 @@ export default function ProfilePage() {
                 <div>
                   <h2 className="text-4xl font-bold tracking-tighter mb-2 h-12">
                     {isEditing ? (
-                      <input 
-                        type="text" 
-                        value={name} 
+                      <input
+                        type="text"
+                        value={name}
                         onChange={(e) => setName(e.target.value)}
                         className="bg-bg-secondary px-4 py-1 rounded-2xl outline-none focus:ring-2 focus:ring-bg-black/10 w-full max-w-md"
                       />
@@ -123,9 +124,9 @@ export default function ProfilePage() {
                   </h2>
                   <div className="h-6">
                     {isEditing ? (
-                      <input 
-                        type="email" 
-                        value={email} 
+                      <input
+                        type="email"
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="bg-bg-secondary px-4 py-0.5 rounded-xl outline-none focus:ring-2 focus:ring-bg-black/10 text-sm font-medium w-full max-w-sm"
                       />
@@ -134,7 +135,7 @@ export default function ProfilePage() {
                     )}
                   </div>
                 </div>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   <div className="p-4 rounded-3xl bg-bg-secondary/30 border border-stroke">
                     <p className="text-[10px] font-bold text-text-paragraph uppercase tracking-widest mb-1">Status</p>
@@ -170,12 +171,12 @@ export default function ProfilePage() {
             {preplannedTrips.map((trip) => (
               <div key={trip.id} className="flex-shrink-0 w-80 group">
                 <div className="relative h-[480px] rounded-[3rem] overflow-hidden shadow-sm border border-stroke hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                  <Image 
-                    src={trip.image} 
-                    alt={trip.title} 
-                    fill 
+                  <Image
+                    src={trip.image}
+                    alt={trip.title}
+                    fill
                     sizes="320px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   <div className="absolute bottom-8 left-8 right-8 text-white">
@@ -208,12 +209,12 @@ export default function ProfilePage() {
             {previousTrips.map((trip) => (
               <div key={trip.id} className="flex-shrink-0 w-80 group">
                 <div className="relative h-[480px] rounded-[3rem] overflow-hidden shadow-sm border border-stroke hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
-                  <Image 
-                    src={trip.image} 
-                    alt={trip.title} 
-                    fill 
+                  <Image
+                    src={trip.image}
+                    alt={trip.title}
+                    fill
                     sizes="320px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0" 
+                    className="object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[0.5] group-hover:grayscale-0"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   <div className="absolute bottom-8 left-8 right-8 text-white">
