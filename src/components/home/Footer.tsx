@@ -1,12 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { auth } from "@/lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import type { User } from "firebase/auth";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser: User | null) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,9 +29,9 @@ export default function Footer() {
   };
 
   return (
-    <footer id="contact" className="bg-white pt-24 pb-12 px-6 overflow-hidden">
+    <footer id="contact" className="bg-white pt-24 pb-12 px-6 md:px-12 overflow-hidden">
       {/* CTA Section */}
-      <div className="max-w-7xl mx-auto mb-32 relative h-[500px] rounded-[3rem] overflow-hidden group">
+      <div className="w-full mb-32 relative h-[500px] rounded-[3.5rem] overflow-hidden group">
         <Image 
           src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" 
           alt="CTA Background" 
@@ -35,8 +46,8 @@ export default function Footer() {
           <p className="text-white/80 max-w-xl mb-10 text-lg">
             Discover breathtaking views, volcanic landscapes, and unforgettable moments in one of Indonesia's most iconic destinations.
           </p>
-          <Link href="/login" className="bg-white/10 backdrop-blur-md text-white border border-white/30 px-10 py-4 rounded-full font-bold flex items-center gap-3 group hover:bg-white hover:text-black transition-all">
-            <span>Reserve Your Tour Now</span>
+          <Link href={user ? "/dashboard" : "/login"} className="bg-white/10 backdrop-blur-md text-white border border-white/30 px-10 py-4 rounded-full font-bold flex items-center gap-3 group hover:bg-white hover:text-black transition-all">
+            <span>{user ? "View Your Dashboard" : "Reserve Your Tour Now"}</span>
             <div className="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center">
               <span className="text-xl">↗</span>
             </div>
@@ -45,14 +56,14 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <div className="max-w-7xl mx-auto border-b border-stroke pb-20">
+      <div className="w-full border-b border-stroke pb-20">
         <div className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_2fr] gap-16">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-black rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">B</span>
+                <span className="text-white font-bold text-sm">T</span>
               </div>
-              <span className="text-black text-xl font-bold tracking-tight">BromoRise</span>
+              <span className="text-black text-xl font-bold tracking-tight">Traveloop</span>
             </div>
             <p className="text-paragraph text-sm max-w-xs">
               We provide curated Mount Bromo travel experiences with expert local guides, safe transportation, and unforgettable sunrise moments.
@@ -72,7 +83,7 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <h4 className="text-black font-bold">Contact Info</h4>
             <div className="flex flex-col gap-3 text-sm text-paragraph font-medium">
-              <p>hello@bromorise.com</p>
+              <p>hello@traveloop.com</p>
               <p>+62 8XX XXXX XXX</p>
               <p>East Java, Indonesia</p>
             </div>
@@ -109,9 +120,9 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto pt-8 text-center">
+      <div className="w-full pt-8 text-center">
         <p className="text-paragraph text-[10px] font-medium tracking-widest uppercase">
-          © 2026 BromoRise. All rights reserved.
+          © 2026 Traveloop. All rights reserved.
         </p>
       </div>
     </footer>

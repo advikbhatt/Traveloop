@@ -2,6 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import { auth } from "@/lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import type { User } from "firebase/auth";
 
 const previewCards = [
   { 
@@ -27,6 +31,15 @@ const previewCards = [
 ];
 
 export default function Hero() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser: User | null) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <section id="top" className="relative w-full h-screen min-h-[850px] flex flex-col items-center pt-32 px-6 overflow-hidden">
       {/* Background Image */}
@@ -82,9 +95,9 @@ export default function Hero() {
             Travel through volcanic landscapes, golden skies, and timeless beauty with expertly guided Mount Bromo tours.
           </p>
           
-          <Link href="/login" className="flex items-center gap-4 group/btn cursor-pointer">
+          <Link href={user ? "/dashboard" : "/login"} className="flex items-center gap-4 group/btn cursor-pointer">
             <div className="px-7 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-bold text-sm group-hover/btn:bg-white group-hover/btn:text-black transition-all">
-              Book now
+              {user ? "Go to Dashboard" : "Book now"}
             </div>
             <div className="w-12 h-12 bg-white text-black rounded-full flex items-center justify-center shadow-lg group-hover/btn:scale-110 transition-transform">
               <span className="text-2xl">↗</span>

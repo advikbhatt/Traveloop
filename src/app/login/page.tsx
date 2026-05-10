@@ -62,9 +62,9 @@ export default function Login() {
         <div className="flex flex-col items-center mb-10">
           <Link href="/" className="flex items-center gap-3 mb-6">
             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-2xl">
-              <span className="text-black font-extrabold text-2xl tracking-tighter">B</span>
+              <span className="text-black font-extrabold text-2xl tracking-tighter">T</span>
             </div>
-            <span className="text-white text-3xl font-extrabold tracking-tighter">BromoRise</span>
+            <span className="text-white text-3xl font-extrabold tracking-tighter">Traveloop</span>
           </Link>
           <h2 className="text-white text-3xl font-bold tracking-tight">
             {isLogin ? "Welcome back" : "Join the adventure"}
@@ -147,7 +147,7 @@ export default function Login() {
 
         <div className="text-center mt-8">
           <p className="text-white/60 text-sm font-medium">
-            {isLogin ? "New to BromoRise?" : "Already have an account?"}{" "}
+            {isLogin ? "New to Traveloop?" : "Already have an account?"}{" "}
             <button
               onClick={() => setIsLogin(!isLogin)}
               className="text-white font-bold hover:underline underline-offset-4"

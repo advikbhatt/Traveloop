@@ -2,6 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState, useEffect } from "react";
+import { auth } from "@/lib/firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import type { User } from "firebase/auth";
 
 const tours = [
   {
@@ -35,9 +39,18 @@ const tours = [
 ];
 
 export default function Tours() {
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser: User | null) => {
+      setUser(currentUser);
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
-    <section id="packages" className="py-24 px-6 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto text-center mb-16">
+    <section id="packages" className="py-24 px-6 md:px-12 bg-white overflow-hidden">
+      <div className="w-full text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 bg-gray-50 text-black text-xs font-bold mb-6">
           <span>Bromo Tours</span>
           <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center text-[10px]">✨</div>
@@ -51,7 +64,7 @@ export default function Tours() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr] gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr] gap-8">
         {/* Left Featured Card */}
         <div className="relative rounded-[3rem] overflow-hidden min-h-[600px] group row-span-2">
           <Image 
@@ -77,6 +90,7 @@ export default function Tours() {
                 src={tour.image} 
                 alt={tour.title} 
                 fill 
+                sizes="(max-width: 768px) 100vw, 400px"
                 className="object-cover group-hover:scale-110 transition-transform duration-500" 
               />
             </div>
@@ -84,8 +98,8 @@ export default function Tours() {
             <p className="text-gray-400 text-xs leading-relaxed mb-6">{tour.desc}</p>
             <div className="flex items-center justify-between mt-auto">
               <span className="text-black font-bold">{tour.price}</span>
-              <Link href="/login" className="flex items-center gap-2 text-black text-[10px] font-bold border border-gray-100 rounded-full px-4 py-2 hover:bg-black hover:text-white transition-all">
-                Book Now <span>→</span>
+              <Link href={user ? "/dashboard" : "/login"} className="flex items-center gap-2 text-black text-[10px] font-bold border border-gray-100 rounded-full px-4 py-2 hover:bg-black hover:text-white transition-all">
+                {user ? "View Plan" : "Book Now"} <span>→</span>
               </Link>
             </div>
           </div>

@@ -12,8 +12,8 @@ const moments = [
 
 export default function Moments() {
   return (
-    <section id="gallery" className="py-24 px-6 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto text-center mb-16">
+    <section id="gallery" className="py-24 px-6 md:px-12 bg-white overflow-hidden">
+      <div className="w-full text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 bg-gray-50 text-black text-xs font-bold mb-6">
           <span>Pure Adventure</span>
           <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center text-[10px]">✨</div>
@@ -27,7 +27,7 @@ export default function Moments() {
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto flex items-end gap-6 h-[500px]">
+      <div className="w-full flex items-end gap-6 h-[500px]">
         {/* We'll use a custom flex layout to mimic the uneven card heights from the screenshot */}
         <div className="flex-1 h-64 rounded-3xl overflow-hidden relative group cursor-pointer">
           <Image src="https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=400&q=80" alt="Moment 1" fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />

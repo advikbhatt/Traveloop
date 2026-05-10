@@ -5,11 +5,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { getUserTrips, Trip } from "@/lib/db-services";
 import { seedDummyData } from "@/lib/seed";
+import { fixBrokenTripImages } from "@/lib/fix-images";
 
 const popularCities = [
-  { name: "Bromo Crater Hike", image: "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=400&q=80", tag: "Adventure" },
-  { name: "Ijen Blue Fire", image: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=400&q=80", tag: "Nature" },
-  { name: "Tumpak Sewu Falls", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80", tag: "Experience" },
+  { name: "Mussoorie Hills", image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80", tag: "Nature" },
+  { name: "Dehradun Valley", image: "https://images.unsplash.com/photo-1595928642581-f50f4f3453a5?auto=format&fit=crop&w=800&q=80", tag: "Adventure" },
+  { name: "Bromo Crater", image: "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=800&q=80", tag: "Experience" },
 ];
 
 export default function Dashboard() {
@@ -19,6 +20,7 @@ export default function Dashboard() {
   useEffect(() => {
     async function loadData() {
       await seedDummyData();
+      await fixBrokenTripImages();
       const userTrips = await getUserTrips();
       setTrips(userTrips);
       setLoading(false);
@@ -32,15 +34,16 @@ export default function Dashboard() {
       <nav className="bg-white border-b border-stroke px-10 py-6 flex items-center justify-between sticky top-0 z-40">
         <Link href="/" className="flex items-center gap-3">
           <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-white font-extrabold text-xl tracking-tighter">B</span>
+            <span className="text-white font-extrabold text-xl tracking-tighter">T</span>
           </div>
-          <span className="text-black text-2xl font-extrabold tracking-tighter">BromoRise</span>
+          <span className="text-black text-2xl font-extrabold tracking-tighter">Traveloop</span>
         </Link>
         
         <div className="flex items-center gap-6">
-          <div className="w-10 h-10 rounded-full bg-gray-100 border border-stroke overflow-hidden">
+          <Link href="/profile" className="text-sm font-bold text-black/60 hover:text-black transition-colors">Settings</Link>
+          <Link href="/profile" className="w-10 h-10 rounded-full bg-gray-100 border border-stroke overflow-hidden hover:ring-2 hover:ring-black transition-all">
              <Image src="https://i.pravatar.cc/100?u=42" alt="Profile" width={40} height={40} />
-          </div>
+          </Link>
         </div>
       </nav>
 

@@ -11,8 +11,8 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 px-6 bg-white overflow-hidden border-t border-stroke">
-      <div className="max-w-7xl mx-auto text-center mb-16">
+    <section id="how-it-works" className="py-24 px-6 md:px-12 bg-white overflow-hidden">
+      <div className="w-full mb-20 text-center">
         <h2 className="text-6xl md:text-8xl font-bold text-black mb-12 tracking-tighter">
           How to Book Your Tour
         </h2>
@@ -27,7 +27,7 @@ export default function HowItWorks() {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="relative h-[600px] rounded-[3rem] overflow-hidden">
           <Image 
             src="https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=800&q=80" 

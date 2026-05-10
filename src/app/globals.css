@@ -92,3 +92,10 @@
     @apply bg-bg-secondary scale-105;
   }
 }
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

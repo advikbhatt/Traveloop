@@ -38,6 +38,14 @@ declare module 'firebase/auth' {
   export const signInWithEmailAndPassword: (auth: any, email: string, pass: string) => Promise<any>;
   export const createUserWithEmailAndPassword: (auth: any, email: string, pass: string) => Promise<any>;
   export const signInWithPopup: (auth: any, provider: any) => Promise<any>;
+  export const onAuthStateChanged: (auth: any, callback: (user: any) => void) => any;
+  export const signOut: (auth: any) => Promise<void>;
+  export interface User {
+    uid: string;
+    email: string | null;
+    displayName: string | null;
+    photoURL: string | null;
+  }
   export class GoogleAuthProvider {
     constructor();
   }

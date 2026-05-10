@@ -35,8 +35,8 @@ const reviews = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 px-6 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto text-center mb-16">
+    <section className="py-24 px-6 md:px-12 bg-white overflow-hidden">
+      <div className="w-full text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 bg-gray-50 text-black text-xs font-bold mb-6">
           <span>Captured Memories</span>
           <div className="w-5 h-5 rounded-full bg-black text-white flex items-center justify-center text-[10px]">✨</div>
@@ -50,7 +50,7 @@ export default function Testimonials() {
         </p>
       </div>
 
-      <div className="max-w-[1400px] mx-auto flex justify-center gap-8 px-4">
+      <div className="w-full flex flex-wrap justify-center gap-8 px-4">
         {reviews.map((review) => (
           <div key={review.id} className={`flex-1 max-w-[320px] transition-transform duration-500 hover:rotate-0 hover:scale-105 ${review.tilt}`}>
             <div className="bg-white p-2 rounded-[2.5rem] shadow-2xl shadow-gray-200 border border-gray-50">
