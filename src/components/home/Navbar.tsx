@@ -8,12 +8,28 @@ import type { User } from "firebase/auth";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("top");
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      
+      const sections = ['gallery', 'packages', 'reviews', 'how-it-works'];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+      if (window.scrollY < 100) setActiveSection("top");
     };
     window.addEventListener("scroll", handleScroll);
 
@@ -31,14 +47,19 @@ export default function Navbar() {
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
-    if (element && (window as any).lenis) {
-      (window as any).lenis.scrollTo(element, {
-        offset: 0,
-        duration: 1.5,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      });
-    } else if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (element) {
+      if ((window as any).lenis) {
+        (window as any).lenis.scrollTo(element, {
+          offset: 0,
+          duration: 1.5,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      } else {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    } else {
+      // Redirect to home with hash if not on home page
+      window.location.href = `/#${id}`;
     }
   };
 
@@ -56,15 +77,35 @@ export default function Navbar() {
       <div className={`hidden md:flex items-center p-1 rounded-full border transition-all duration-500 ${scrolled ? 'bg-white/10 backdrop-blur-2xl border-white/10' : 'bg-black/5 border-black/5'}`}>
         <button 
           onClick={(e) => handleScrollTo(e, 'top')} 
-          className={`px-6 py-2 rounded-full font-bold text-sm shadow-lg transition-all duration-500 ${scrolled ? 'bg-white text-black' : 'bg-black text-white'}`}
+          className={`px-6 py-2 rounded-full font-bold text-sm transition-all duration-500 ${activeSection === 'top' ? (scrolled ? 'bg-white text-black shadow-lg scale-105' : 'bg-black text-white scale-105') : (scrolled ? 'text-white/40 hover:text-white/70' : 'text-black/40 hover:text-black/70')}`}
         >
           Home
         </button>
-        <div className="flex items-center px-4 gap-8">
-          <Link href="/community" className={`font-bold text-sm transition-colors ${scrolled ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'}`}>Community</Link>
-          <Link href="/billing" className={`font-bold text-sm transition-colors ${scrolled ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'}`}>Billing</Link>
-          <Link href="/checklist" className={`font-bold text-sm transition-colors ${scrolled ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'}`}>Checklist</Link>
-          <Link href="/profile" className={`font-bold text-sm transition-colors ${scrolled ? 'text-white/70 hover:text-white' : 'text-black/60 hover:text-black'}`}>Profile</Link>
+        <div className="flex items-center px-4 gap-2">
+          <button 
+            onClick={(e) => handleScrollTo(e, 'gallery')} 
+            className={`px-5 py-2 rounded-full font-bold text-sm transition-all duration-300 ${activeSection === 'gallery' ? (scrolled ? 'bg-white text-black shadow-lg scale-105' : 'bg-black text-white scale-105') : (scrolled ? 'text-white/40 hover:text-white/70' : 'text-black/40 hover:text-black/70')}`}
+          >
+            Gallery
+          </button>
+          <button 
+            onClick={(e) => handleScrollTo(e, 'packages')} 
+            className={`px-5 py-2 rounded-full font-bold text-sm transition-all duration-300 ${activeSection === 'packages' ? (scrolled ? 'bg-white text-black shadow-lg scale-105' : 'bg-black text-white scale-105') : (scrolled ? 'text-white/40 hover:text-white/70' : 'text-black/40 hover:text-black/70')}`}
+          >
+            Packages
+          </button>
+          <button 
+            onClick={(e) => handleScrollTo(e, 'reviews')} 
+            className={`px-5 py-2 rounded-full font-bold text-sm transition-all duration-300 ${activeSection === 'reviews' ? (scrolled ? 'bg-white text-black shadow-lg scale-105' : 'bg-black text-white scale-105') : (scrolled ? 'text-white/40 hover:text-white/70' : 'text-black/40 hover:text-black/70')}`}
+          >
+            Reviews
+          </button>
+          <button 
+            onClick={(e) => handleScrollTo(e, 'how-it-works')} 
+            className={`px-5 py-2 rounded-full font-bold text-sm transition-all duration-300 ${activeSection === 'how-it-works' ? (scrolled ? 'bg-white text-black shadow-lg scale-105' : 'bg-black text-white scale-105') : (scrolled ? 'text-white/40 hover:text-white/70' : 'text-black/40 hover:text-black/70')}`}
+          >
+            How to Book
+          </button>
         </div>
       </div>
 

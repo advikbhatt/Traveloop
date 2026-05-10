@@ -35,7 +35,7 @@ const reviews = [
 
 export default function Testimonials() {
   return (
-    <section className="py-24 px-6 md:px-12 bg-white overflow-hidden">
+    <section id="reviews" className="py-24 px-6 md:px-12 bg-white overflow-hidden">
       <div className="w-full text-center mb-16">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-black/10 bg-gray-50 text-black text-xs font-bold mb-6">
           <span>Captured Memories</span>

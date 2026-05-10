@@ -8,6 +8,7 @@ import { auth } from "@/lib/firebase";
 import { getUserTrips, Trip } from "@/lib/db-services";
 import { seedDummyData } from "@/lib/seed";
 import { fixBrokenTripImages } from "@/lib/fix-images";
+import Navbar from "@/components/home/Navbar";
 
 const popularCities = [
   { name: "Mussoorie Hills", image: "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80", tag: "Nature" },
@@ -38,30 +39,9 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-[#F6F6F6] font-display">
-      {/* Dashboard Nav */}
-      <nav className="bg-white border-b border-stroke px-10 py-6 flex items-center justify-between sticky top-0 z-40">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-black rounded-full flex items-center justify-center shadow-lg">
-            <span className="text-white font-extrabold text-xl tracking-tighter">T</span>
-          </div>
-          <span className="text-black text-2xl font-extrabold tracking-tighter">Traveloop</span>
-        </Link>
+      <Navbar />
 
-        <div className="flex items-center gap-6">
-          <Link href="/profile" className="text-sm font-bold text-black/60 hover:text-black transition-colors">Settings</Link>
-          <button 
-            onClick={handleLogout}
-            className="text-sm font-bold text-error hover:opacity-70 transition-opacity"
-          >
-            Logout
-          </button>
-          <Link href="/profile" className="w-10 h-10 rounded-full bg-gray-100 border border-stroke overflow-hidden hover:ring-2 hover:ring-black transition-all">
-            <Image src="https://i.pravatar.cc/100?u=42" alt="Profile" width={40} height={40} />
-          </Link>
-        </div>
-      </nav>
-
-      <div className="max-w-7xl mx-auto px-10 py-12">
+      <div className="max-w-7xl mx-auto px-10 py-12 pt-32">
         <header className="flex justify-between items-end mb-16">
           <div>
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/5 bg-white text-black text-[10px] font-bold uppercase tracking-widest mb-4">
