@@ -12,10 +12,12 @@ const firebaseConfig = {
   measurementId: "G-B7SQ1GW70X"
 };
 
-// Initialize Firebase (prevent re-initialization in Next.js development)
+import { getFirestore } from "firebase/firestore";
+
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+const db = getFirestore(app);
 
 // Analytics can only be initialized on the client side
 let analytics;
@@ -23,4 +25,4 @@ if (typeof window !== "undefined") {
   isSupported().then((yes: boolean) => yes && (analytics = getAnalytics(app)));
 }
 
-export { app, auth, analytics, googleProvider };
+export { app, auth, analytics, googleProvider, db };

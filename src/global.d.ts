@@ -42,3 +42,20 @@ declare module 'firebase/auth' {
   }
 }
 
+declare module 'firebase/firestore' {
+  export const getFirestore: (app: any) => any;
+  export const collection: (db: any, path: string) => any;
+  export const doc: (db: any, path: string, id?: string) => any;
+  export const getDocs: (query: any) => Promise<any>;
+  export const getDoc: (docRef: any) => Promise<any>;
+  export const addDoc: (collectionRef: any, data: any) => Promise<any>;
+  export const setDoc: (docRef: any, data: any) => Promise<void>;
+  export const updateDoc: (docRef: any, data: any) => Promise<void>;
+  export const deleteDoc: (docRef: any) => Promise<void>;
+  export const query: (collectionRef: any, ...constraints: any[]) => any;
+  export const where: (field: string, op: string, value: any) => any;
+  export const orderBy: (field: string, dir?: string) => any;
+  export const serverTimestamp: () => any;
+}
+
+

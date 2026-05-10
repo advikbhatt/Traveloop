@@ -1,0 +1,120 @@
+.container {
+  padding: var(--spacing-xl) var(--spacing-lg);
+  max-width: 1000px;
+  margin: 0 auto;
+  animation: fadeIn var(--transition-normal) forwards;
+}
+
+.header {
+  margin-bottom: var(--spacing-xl);
+}
+
+.backLink {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: inline-block;
+  margin-bottom: var(--spacing-sm);
+}
+
+.backLink:hover {
+  color: var(--accent-primary);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-lg);
+}
+
+.overviewCard, .breakdownCard {
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: var(--spacing-lg);
+}
+
+.budgetDisplay {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
+}
+
+.budgetItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.label {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.positive .value { color: var(--success); }
+.negative .value { color: var(--error); }
+
+.progressBarBg {
+  height: 12px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-round);
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  border-radius: var(--radius-round);
+  transition: width var(--transition-slow);
+}
+
+.expenseList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.expenseItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-sm);
+}
+
+.expenseInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  font-size: 1.1rem;
+}
+
+.categoryColor {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+}
+
+.expenseAmount {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
