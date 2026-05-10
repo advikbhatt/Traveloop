@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "./page.module.css";
 import { useParams } from "next/navigation";
-import { getTripById, getStopsForTrip, getActivitiesForStop, Trip, Stop, Activity } from "@/lib/db-services";
+import { getTripById, getStopsForTrip, getActivitiesForStop, Trip, Activity } from "@/lib/db-services";
 
 type DayBlock = {
   day: string;
@@ -47,60 +46,85 @@ export default function ItineraryView() {
     loadData();
   }, [tripId]);
 
-  if (loading) return <div className={styles.container}><p style={{padding: '2rem'}}>Loading Itinerary...</p></div>;
-  if (!trip) return <div className={styles.container}><p style={{padding: '2rem'}}>Trip not found.</p></div>;
+  if (loading) return (
+    <div className="flex items-center justify-center min-h-screen">
+      <p className="text-text-tertiary animate-pulse text-lg">Loading Itinerary...</p>
+    </div>
+  );
+  
+  if (!trip) return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <p className="text-error text-lg mb-4">Trip not found.</p>
+      <Link href="/trips" className="btn-secondary">Back to My Trips</Link>
+    </div>
+  );
 
   return (
-    <div className={styles.container}>
+    <div className="animate-in fade-in duration-500 pb-20">
       <div 
-        className={styles.hero} 
-        style={{ backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 11, 0.2), var(--bg-primary)), url(${trip.coverPhoto})` }}
+        className="relative h-[400px] w-full flex items-end px-6 md:px-[10%] pb-12 bg-cover bg-center" 
+        style={{ backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 11, 0.2), #0A0A0B), url(${trip.coverPhoto})` }}
       >
-        <div className={styles.heroContent}>
-          <Link href="/trips" className={styles.backLink}>← Back to Trips</Link>
-          <h1 className={styles.title}>{trip.name}</h1>
-          <p className={styles.dates}>{trip.dates}</p>
+        <div className="relative z-10 w-full max-w-6xl mx-auto">
+          <Link href="/trips" className="text-white/60 hover:text-white transition-colors mb-6 inline-block font-medium">← Back to Trips</Link>
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 tracking-tighter text-white">{trip.name}</h1>
+          <p className="text-accent-primary text-xl font-medium">{trip.dates}</p>
         </div>
       </div>
 
-      <div className={styles.actionsBar}>
-        <div className={styles.quickLinks}>
-          <Link href={`/trips/${params.id}/build`} className="btn-secondary">Edit Itinerary</Link>
-          <Link href={`/trips/${params.id}/budget`} className="btn-secondary">Budget</Link>
-          <Link href={`/trips/${params.id}/packing`} className="btn-secondary">Packing List</Link>
-          <Link href={`/trips/${params.id}/notes`} className="btn-secondary">Notes</Link>
+      <div className="max-w-6xl mx-auto px-6 sticky top-0 z-40 py-4 bg-bg-primary/80 backdrop-blur-xl border-b border-white/5 mb-12">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <Link href={`/trips/${params.id}/build`} className="btn-secondary py-2 text-sm">Edit Itinerary</Link>
+            <Link href={`/trips/${params.id}/budget`} className="btn-secondary py-2 text-sm">Budget</Link>
+            <Link href={`/trips/${params.id}/packing`} className="btn-secondary py-2 text-sm">Packing List</Link>
+            <Link href={`/trips/${params.id}/notes`} className="btn-secondary py-2 text-sm">Notes</Link>
+          </div>
+          <Link href={`/shared/${params.id}`} className="btn-primary py-2 px-8 text-sm w-full md:w-auto text-center">Share Trip</Link>
         </div>
-        <Link href={`/shared/${params.id}`} className="btn-primary">Share Trip</Link>
       </div>
 
-      <div className={styles.timeline}>
+      <div className="max-w-4xl mx-auto px-6 flex flex-col gap-16">
         {itineraryDays.map((day, index) => (
-          <div key={index} className={styles.dayBlock}>
-            <div className={styles.dayHeader}>
-              <div className={styles.dayMeta}>
-                <h2>{day.day}</h2>
-                <span className={styles.dateLabel}>{day.date}</span>
+          <div key={index} className="relative pl-8 md:pl-12 border-l border-white/10">
+            {/* Timeline Dot */}
+            <div className="absolute top-0 left-[-6px] w-3 h-3 rounded-full bg-accent-primary shadow-[0_0_10px_rgba(0,122,255,0.8)]"></div>
+            
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 mb-8">
+              <div>
+                <h2 className="text-3xl font-bold mb-1">{day.day}</h2>
+                <span className="text-accent-primary font-medium text-sm tracking-wide uppercase">{day.date}</span>
               </div>
-              <div className={styles.cityLabel}>{day.city}</div>
+              <div className="bg-white/5 px-4 py-1.5 rounded-full border border-white/10 text-text-secondary text-sm font-semibold">
+                {day.city}
+              </div>
             </div>
 
-              <div className={styles.activityList}>
-                {day.activities.map((act, i) => (
-                  <div key={i} className={`glass-panel ${styles.activityCard}`}>
-                    <div className={styles.timeColumn}>{act.duration}</div>
-                    <div className={styles.detailColumn}>
-                      <h3>{act.name}</h3>
-                      <div className={styles.actBadges}>
-                        <span className={styles.typeBadge}>{act.type}</span>
-                        {act.cost !== "Free" && <span className={styles.noteBadge}>💰 {act.cost}</span>}
-                      </div>
+            <div className="flex flex-col gap-4">
+              {day.activities.map((act, i) => (
+                <div key={i} className="glass-panel flex flex-col sm:flex-row gap-4 p-5 rounded-2xl hover:bg-white/5 transition-all group">
+                  <div className="w-full sm:w-24 text-text-tertiary text-sm font-mono pt-1">{act.duration}</div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-bold mb-2 group-hover:text-accent-primary transition-colors">{act.name}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      <span className="px-3 py-0.5 rounded-full bg-accent-secondary/10 text-accent-secondary border border-accent-secondary/20 text-[0.7rem] font-bold uppercase tracking-wider">
+                        {act.type}
+                      </span>
+                      {act.cost !== "Free" && (
+                        <span className="px-3 py-0.5 rounded-full bg-success/10 text-success border border-success/20 text-[0.7rem] font-bold uppercase tracking-wider">
+                          💰 {act.cost}
+                        </span>
+                      )}
                     </div>
                   </div>
-                ))}
-                {day.activities.length === 0 && (
-                  <p style={{ color: 'var(--text-secondary)', padding: '1rem' }}>No activities planned yet.</p>
-                )}
-              </div>
+                </div>
+              ))}
+              {day.activities.length === 0 && (
+                <div className="py-6 px-4 bg-white/5 border border-dashed border-white/10 rounded-2xl text-center">
+                  <p className="text-text-tertiary italic">No activities planned yet.</p>
+                </div>
+              )}
+            </div>
           </div>
         ))}
       </div>

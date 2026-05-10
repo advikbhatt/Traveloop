@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "@/lib/firebase";
-import styles from "./page.module.css";
 
 export default function Login() {
   const [isLogin, setIsLogin] = useState(true);
@@ -44,59 +43,65 @@ export default function Login() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={`glass-panel ${styles.authCard} animate-fade-in`}>
-        <div className={styles.header}>
-          <h1 className="gradient-text">Traveloop</h1>
-          <p className={styles.subtitle}>
+    <div className="min-h-screen flex items-center justify-center p-6 bg-[radial-gradient(circle_at_50%_-20%,rgba(0,122,255,0.15)_0%,transparent_50%),radial-gradient(circle_at_0%_100%,rgba(94,92,230,0.1)_0%,transparent_40%)]">
+      <div className="glass-panel w-full max-w-[420px] p-8 flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-300">
+        <div className="text-center mb-2">
+          <h1 className="gradient-text text-4xl mb-2">Traveloop</h1>
+          <p className="text-text-secondary text-[0.95rem]">
             {isLogin ? "Welcome back, explorer." : "Start your journey today."}
           </p>
         </div>
 
-        {error && <div className={styles.errorMessage}>{error}</div>}
+        {error && (
+          <div className="bg-error/10 border border-error/30 text-error p-3 rounded-md text-sm text-center">
+            {error}
+          </div>
+        )}
 
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.inputGroup}>
-            <label htmlFor="email">Email</label>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="email" className="text-xs font-medium text-text-secondary ml-1">Email</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@example.com"
+              className="w-full p-4 bg-bg-secondary border border-white/10 rounded-xl text-text-primary focus:outline-none focus:border-accent-primary focus:ring-3 focus:ring-accent-primary/20 transition-all"
               required
             />
           </div>
 
-          <div className={styles.inputGroup}>
-            <label htmlFor="password">Password</label>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="password" readonly className="text-xs font-medium text-text-secondary ml-1">Password</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
+              className="w-full p-4 bg-bg-secondary border border-white/10 rounded-xl text-text-primary focus:outline-none focus:border-accent-primary focus:ring-3 focus:ring-accent-primary/20 transition-all"
               required
             />
           </div>
 
           {isLogin && (
-            <div className={styles.forgotPassword}>
-              <a href="#">Forgot Password?</a>
+            <div className="text-right text-[0.85rem]">
+              <a href="#" className="text-accent-primary hover:text-accent-primary-hover transition-colors">Forgot Password?</a>
             </div>
           )}
 
-          <button type="submit" className={`btn-primary ${styles.submitBtn}`} disabled={loading}>
+          <button type="submit" className="btn-primary mt-2 w-full disabled:opacity-70" disabled={loading}>
             {loading ? "Please wait..." : isLogin ? "Login" : "Sign Up"}
           </button>
         </form>
 
-        <div className={styles.toggleMode}>
+        <div className="text-center text-[0.9rem] text-text-secondary mt-2">
           <p>
             {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
             <button
               type="button"
-              className={styles.toggleBtn}
+              className="text-accent-primary font-semibold hover:underline"
               onClick={() => {
                 setIsLogin(!isLogin);
                 setError(null);
@@ -107,13 +112,13 @@ export default function Login() {
           </p>
         </div>
 
-        <div className={styles.divider}>
-          <span>or</span>
+        <div className="flex items-center text-center text-text-secondary text-[0.85rem] my-2 before:content-[''] before:flex-1 before:border-b before:border-white/10 after:content-[''] after:flex-1 after:border-b after:border-white/10">
+          <span className="px-4">or</span>
         </div>
 
         <button 
           type="button" 
-          className={styles.googleBtn} 
+          className="flex items-center justify-center gap-2 w-full p-3 bg-white text-[#3c4043] rounded-full font-medium text-[1rem] border border-[#dadce0] hover:bg-[#f8f9fa] hover:shadow-sm transition-all" 
           onClick={handleGoogleLogin}
         >
           <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg">

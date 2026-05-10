@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./page.module.css";
 
 // Mock data for Admin
 const stats = [
@@ -19,50 +18,52 @@ const recentUsers = [
 
 export default function AdminDashboard() {
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <div className={styles.headerLeft}>
-          <Link href="/dashboard" className={styles.backLink}>← Back to App</Link>
-          <h1 className="gradient-text">Admin Analytics</h1>
-          <p className={styles.subtitle}>Platform usage and metrics</p>
+    <div className="max-w-6xl mx-auto px-6 py-12 animate-in fade-in duration-500">
+      <header className="mb-12 flex flex-col gap-4">
+        <Link href="/dashboard" className="text-text-tertiary hover:text-white transition-colors text-sm font-medium">← Back to App</Link>
+        <div>
+          <h1 className="gradient-text text-4xl mb-1">Admin Analytics</h1>
+          <p className="text-text-secondary text-lg">Platform usage and metrics</p>
         </div>
       </header>
 
-      <div className={styles.statsGrid}>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         {stats.map((stat, i) => (
-          <div key={i} className={`glass-panel ${styles.statCard}`}>
-            <h3>{stat.label}</h3>
-            <p className={styles.statValue}>{stat.value}</p>
+          <div key={i} className="glass-panel p-6 rounded-2xl">
+            <h3 className="text-text-tertiary text-sm font-medium mb-2">{stat.label}</h3>
+            <p className="text-3xl font-bold text-white">{stat.value}</p>
           </div>
         ))}
       </div>
 
-      <div className={`glass-panel ${styles.tableContainer}`}>
-        <h2>Recent Users</h2>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Joined Date</th>
-              <th>Trips</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {recentUsers.map(user => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.joined}</td>
-                <td>{user.trips}</td>
-                <td>
-                  <button className={styles.actionBtn}>View</button>
-                </td>
+      <div className="glass-panel p-8 rounded-3xl overflow-hidden shadow-2xl shadow-black/40">
+        <h2 className="text-xl font-bold mb-8">Recent Users</h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left">
+            <thead>
+              <tr className="border-b border-white/10 text-text-tertiary text-xs uppercase tracking-widest">
+                <th className="pb-4 font-semibold">Name</th>
+                <th className="pb-4 font-semibold">Email</th>
+                <th className="pb-4 font-semibold">Joined Date</th>
+                <th className="pb-4 font-semibold text-center">Trips</th>
+                <th className="pb-4 font-semibold text-right">Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {recentUsers.map(user => (
+                <tr key={user.id} className="hover:bg-white/5 transition-colors">
+                  <td className="py-4 text-white font-medium">{user.name}</td>
+                  <td className="py-4 text-text-secondary">{user.email}</td>
+                  <td className="py-4 text-text-secondary">{user.joined}</td>
+                  <td className="py-4 text-text-secondary text-center">{user.trips}</td>
+                  <td className="py-4 text-right">
+                    <button className="text-accent-primary hover:text-accent-primary-hover font-semibold transition-colors">View</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );
