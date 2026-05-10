@@ -17,7 +17,7 @@ export async function seedDummyData() {
   const activeSnapshot = await getDocs(collection(db, "trips"));
   
   // If any valid trips remain (like Uttarakhand), skip re-seeding
-  const validTrips = activeSnapshot.docs.filter(d => d.data().name && !d.data().name.includes("Japan") && !d.data().name.includes("Euro"));
+  const validTrips = activeSnapshot.docs.filter((d: any) => d.data().name && !d.data().name.includes("Japan") && !d.data().name.includes("Euro"));
   
   if (validTrips.length > 0) {
     console.log("Active valid trips found, skipping regeneration.");
