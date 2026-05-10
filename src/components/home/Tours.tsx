@@ -9,7 +9,7 @@ const tours = [
     title: "Sunrise Explorer",
     desc: "Experience Mount Bromo's iconic sunrise with a smooth, guided tour.",
     price: "$39 / person",
-    image: "https://images.unsplash.com/photo-1623910609653-53535948f219?auto=format&fit=crop&w=400&q=80"
+    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80"
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ const tours = [
     title: "Private Bromo Journey",
     desc: "A fully personalized Bromo adventure with private transport and guide.",
     price: "$149 / person",
-    image: "https://images.unsplash.com/photo-1510672854261-7d3df00e22cc?auto=format&fit=crop&w=400&q=80"
+    image: "https://images.unsplash.com/photo-1602154663343-89fe0bf541ab?auto=format&fit=crop&w=400&q=80"
   }
 ];
 
@@ -55,7 +55,7 @@ export default function Tours() {
         {/* Left Featured Card */}
         <div className="relative rounded-[3rem] overflow-hidden min-h-[600px] group row-span-2">
           <Image 
-            src="https://images.unsplash.com/photo-1623910609653-53535948f219?auto=format&fit=crop&w=800&q=80" 
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" 
             alt="Main Tour" 
             fill 
             sizes="(max-width: 768px) 100vw, 800px"

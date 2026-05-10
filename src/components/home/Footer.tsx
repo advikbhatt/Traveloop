@@ -22,7 +22,7 @@ export default function Footer() {
       {/* CTA Section */}
       <div className="max-w-7xl mx-auto mb-32 relative h-[500px] rounded-[3rem] overflow-hidden group">
         <Image 
-          src="https://images.unsplash.com/photo-1623910609653-53535948f219?auto=format&fit=crop&w=1200&q=80" 
+          src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80" 
           alt="CTA Background" 
           fill 
           sizes="100vw"

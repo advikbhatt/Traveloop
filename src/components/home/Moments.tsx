@@ -3,11 +3,11 @@
 import Image from "next/image";
 
 const moments = [
-  { id: 1, title: "Sunrise View", image: "https://images.unsplash.com/photo-1623910609653-53535948f219?auto=format&fit=crop&w=400&q=80", span: "col-span-1 h-60" },
-  { id: 2, title: "Jeep Tour", image: "https://images.unsplash.com/photo-1588365851480-e8371cc0b217?auto=format&fit=crop&w=600&q=80", span: "col-span-1 h-80" },
+  { id: 1, title: "Sunrise View", image: "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=400&q=80", span: "col-span-1 h-60" },
+  { id: 2, title: "Jeep Tour", image: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=600&q=80", span: "col-span-1 h-80" },
   { id: 3, title: "Crater Hike", image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=600&q=80", span: "col-span-1 h-[28rem]" },
-  { id: 4, title: "Local Life", image: "https://images.unsplash.com/photo-1510672854261-7d3df00e22cc?auto=format&fit=crop&w=600&q=80", span: "col-span-1 h-96" },
-  { id: 5, title: "Sea of Sand", image: "https://images.unsplash.com/photo-1588365851480-e8371cc0b217?auto=format&fit=crop&w=600&q=80", span: "col-span-1 h-80" },
+  { id: 4, title: "Local Life", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80", span: "col-span-1 h-96" },
+  { id: 5, title: "Sea of Sand", image: "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=600&q=80", span: "col-span-1 h-80" },
 ];
 
 export default function Moments() {
@@ -30,20 +30,20 @@ export default function Moments() {
       <div className="max-w-7xl mx-auto flex items-end gap-6 h-[500px]">
         {/* We'll use a custom flex layout to mimic the uneven card heights from the screenshot */}
         <div className="flex-1 h-64 rounded-3xl overflow-hidden relative group cursor-pointer">
-          <Image src="https://images.unsplash.com/photo-1623910609653-53535948f219?auto=format&fit=crop&w=400&q=80" alt="Moment 1" fill sizes="200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+          <Image src="https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=400&q=80" alt="Moment 1" fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
         </div>
         <div className="flex-1 h-80 rounded-3xl overflow-hidden relative group cursor-pointer">
-          <Image src="https://images.unsplash.com/photo-1588365851480-e8371cc0b217?auto=format&fit=crop&w=400&q=80" alt="Moment 2" fill sizes="200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+          <Image src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=400&q=80" alt="Moment 2" fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
         </div>
         <div className="flex-1 h-[450px] rounded-3xl overflow-hidden relative group cursor-pointer">
-          <Image src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80" alt="Moment 3" fill sizes="200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+          <Image src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80" alt="Moment 3" fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
         </div>
         <div className="flex-[1.5] h-[480px] rounded-3xl overflow-hidden relative group cursor-pointer">
           <Image 
-            src="https://images.unsplash.com/photo-1510672854261-7d3df00e22cc?auto=format&fit=crop&w=600&q=80" 
+            src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" 
             alt="Moment 4" 
             fill 
-            sizes="(max-width: 768px) 100vw, 400px"
+            sizes="(max-width: 768px) 100vw, 600px"
             className="object-cover group-hover:scale-110 transition-transform duration-700" 
           />
           <div className="absolute bottom-8 left-8 bg-white p-6 rounded-3xl shadow-xl border border-gray-100 max-w-xs">
@@ -53,10 +53,10 @@ export default function Moments() {
           </div>
         </div>
         <div className="flex-1 h-96 rounded-3xl overflow-hidden relative group cursor-pointer">
-          <Image src="https://images.unsplash.com/photo-1588365851480-e8371cc0b217?auto=format&fit=crop&w=400&q=80" alt="Moment 5" fill sizes="200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+          <Image src="https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=400&q=80" alt="Moment 5" fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
         </div>
         <div className="flex-1 h-72 rounded-3xl overflow-hidden relative group cursor-pointer">
-          <Image src="https://images.unsplash.com/photo-1623910609653-53535948f219?auto=format&fit=crop&w=400&q=80" alt="Moment 6" fill sizes="200px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
+          <Image src="https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=400&q=80" alt="Moment 6" fill sizes="(max-width: 768px) 100vw, 400px" className="object-cover group-hover:scale-110 transition-transform duration-700" />
         </div>
       </div>
     </section>

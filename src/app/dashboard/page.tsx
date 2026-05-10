@@ -8,8 +8,8 @@ import { seedDummyData } from "@/lib/seed";
 
 const popularCities = [
   { name: "Bromo Crater Hike", image: "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=400&q=80", tag: "Adventure" },
-  { name: "Ijen Blue Fire", image: "https://images.unsplash.com/photo-1588365851480-e8371cc0b217?auto=format&fit=crop&w=400&q=80", tag: "Nature" },
-  { name: "Tumpak Sewu Falls", image: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=400&q=80", tag: "Experience" },
+  { name: "Ijen Blue Fire", image: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=400&q=80", tag: "Nature" },
+  { name: "Tumpak Sewu Falls", image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80", tag: "Experience" },
 ];
 
 export default function Dashboard() {
@@ -78,7 +78,7 @@ export default function Dashboard() {
                 <div key={trip.id} className="group bg-white rounded-[3rem] overflow-hidden border border-stroke shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
                   <div className="relative h-64 overflow-hidden">
                     <Image 
-                      src={trip.coverPhoto || "https://images.unsplash.com/photo-1588365851480-e8371cc0b217?auto=format&fit=crop&w=600&q=80"} 
+                      src={trip.coverPhoto || "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=600&q=80"} 
                       alt={trip.name} 
                       fill 
                       sizes="(max-width: 768px) 100vw, 400px"

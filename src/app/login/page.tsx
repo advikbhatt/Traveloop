@@ -49,7 +49,7 @@ export default function Login() {
       {/* Background Image - Blurred Bromo */}
       <div className="absolute inset-0 z-0">
         <Image 
-          src="https://images.unsplash.com/photo-1623910609653-53535948f219?auto=format&fit=crop&w=1920&q=80" 
+          src="https://images.unsplash.com/photo-1602154663343-89fe0bf541ab?auto=format&fit=crop&w=1920&q=80" 
           alt="Bromo Background"
           fill
           className="object-cover scale-110 blur-xl brightness-50"

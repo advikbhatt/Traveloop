@@ -30,7 +30,7 @@ export default function HowItWorks() {
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         <div className="relative h-[600px] rounded-[3rem] overflow-hidden">
           <Image 
-            src="https://images.unsplash.com/photo-1588365851480-e8371cc0b217?auto=format&fit=crop&w=800&q=80" 
+            src="https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=800&q=80" 
             alt="Booking" 
             fill 
             sizes="(max-width: 768px) 100vw, 600px"

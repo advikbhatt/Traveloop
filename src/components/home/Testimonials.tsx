@@ -7,7 +7,7 @@ const reviews = [
     id: 1,
     name: "Alya Rahman",
     text: "Breathtaking sunrise and amazing guides. Truly unforgettable!",
-    image: "https://images.unsplash.com/photo-1588365851480-e8371cc0b217?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1530172202330-0b30ddcfc7b5?auto=format&fit=crop&w=400&q=80",
     tilt: "-rotate-3"
   },
   {
@@ -28,7 +28,7 @@ const reviews = [
     id: 4,
     name: "Siti Nurhaliza",
     text: "Every moment was magical. Bromo is a must-see!",
-    image: "https://images.unsplash.com/photo-1510672854261-7d3df00e22cc?auto=format&fit=crop&w=400&q=80",
+    image: "https://images.unsplash.com/photo-1544256718-3bcf237f3974?auto=format&fit=crop&w=400&q=80",
     tilt: "rotate-3"
   }
 ];

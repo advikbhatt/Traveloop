@@ -63,7 +63,7 @@ export default function Hero() {
               {[1, 2, 3, 4].map((i) => (
                 <div key={i} className="w-12 h-12 rounded-full border-2 border-white/50 overflow-hidden relative shadow-lg transition-transform duration-300 group-hover:translate-x-1">
                   <Image
-                    src={`https://i.pravatar.cc/100?u=${i + 70}`}
+                    src={`https://i.pravatar.cc/100?u=${i + 80}`}
                     alt="User"
                     fill
                     sizes="48px"
