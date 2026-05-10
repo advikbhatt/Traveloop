@@ -12,6 +12,7 @@ declare module 'next/navigation' {
   export const useRouter: () => any;
   export const usePathname: () => any;
   export const useSearchParams: () => any;
+  export const useParams: () => any;
 }
 
 declare module '@prisma/client' {

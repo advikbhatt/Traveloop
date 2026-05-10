@@ -35,7 +35,7 @@ export async function getUserTrips(userId: string = "mock-user-id"): Promise<Tri
     const q = query(collection(db, "trips"), where("userId", "==", userId));
     const querySnapshot = await getDocs(q);
     const trips: Trip[] = [];
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc: any) => {
       trips.push({ id: doc.id, ...doc.data() } as Trip);
     });
     return trips;
@@ -76,7 +76,7 @@ export async function getStopsForTrip(tripId: string): Promise<Stop[]> {
     const q = query(collection(db, "stops"), where("tripId", "==", tripId));
     const querySnapshot = await getDocs(q);
     const stops: Stop[] = [];
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc: any) => {
       stops.push({ id: doc.id, ...doc.data() } as Stop);
     });
     return stops.sort((a, b) => a.order - b.order);
@@ -103,7 +103,7 @@ export async function getActivitiesForStop(stopId: string): Promise<Activity[]> 
     const q = query(collection(db, "activities"), where("stopId", "==", stopId));
     const querySnapshot = await getDocs(q);
     const activities: Activity[] = [];
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc: any) => {
       activities.push({ id: doc.id, ...doc.data() } as Activity);
     });
     return activities;
