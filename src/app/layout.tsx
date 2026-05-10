@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScroll from "@/components/common/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "Traveloop | Personalized Travel Planning Made Easy",
@@ -14,9 +15,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <main className="app-container">
-          {children}
-        </main>
+        <SmoothScroll>
+          <main className="app-container">
+            {children}
+          </main>
+        </SmoothScroll>
       </body>
     </html>
   );

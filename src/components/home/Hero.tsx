@@ -28,7 +28,7 @@ const previewCards = [
 
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen min-h-[850px] flex flex-col items-center pt-32 px-6 overflow-hidden">
+    <section id="top" className="relative w-full h-screen min-h-[850px] flex flex-col items-center pt-32 px-6 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
