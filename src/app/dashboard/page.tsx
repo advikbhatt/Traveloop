@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { auth } from "@/lib/firebase";
 import { getUserTrips, Trip } from "@/lib/db-services";
 import { seedDummyData } from "@/lib/seed";
 import { fixBrokenTripImages } from "@/lib/fix-images";
@@ -14,6 +16,7 @@ const popularCities = [
 ];
 
 export default function Dashboard() {
+  const router = useRouter();
   const [trips, setTrips] = useState<Trip[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,6 +31,11 @@ export default function Dashboard() {
     loadData();
   }, []);
 
+  const handleLogout = async () => {
+    await auth.signOut();
+    router.push("/");
+  };
+
   return (
     <div className="min-h-screen bg-[#F6F6F6] font-display">
       {/* Dashboard Nav */}
@@ -41,6 +49,12 @@ export default function Dashboard() {
 
         <div className="flex items-center gap-6">
           <Link href="/profile" className="text-sm font-bold text-black/60 hover:text-black transition-colors">Settings</Link>
+          <button 
+            onClick={handleLogout}
+            className="text-sm font-bold text-error hover:opacity-70 transition-opacity"
+          >
+            Logout
+          </button>
           <Link href="/profile" className="w-10 h-10 rounded-full bg-gray-100 border border-stroke overflow-hidden hover:ring-2 hover:ring-black transition-all">
             <Image src="https://i.pravatar.cc/100?u=42" alt="Profile" width={40} height={40} />
           </Link>
