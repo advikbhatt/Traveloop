@@ -17,6 +17,19 @@ export default function BillingPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [isPaid, setIsPaid] = useState(false);
   const [items, setItems] = useState(invoiceItems);
+  const [totalBudget, setTotalBudget] = useState(20000);
+
+  const totalSpent = items.reduce((acc, item) => acc + item.amount, 0);
+  const remaining = totalBudget - totalSpent;
+  const spentPercentage = Math.round((totalSpent / totalBudget) * 100);
+  const isOverBudget = totalSpent > totalBudget;
+
+  const handleEditBudget = () => {
+    const newBudget = prompt("Enter new total budget:", totalBudget.toString());
+    if (newBudget && !isNaN(Number(newBudget))) {
+      setTotalBudget(Number(newBudget));
+    }
+  };
 
   const filteredItems = items.filter(item => 
     item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -155,8 +168,8 @@ export default function BillingPage() {
                         <p>Discount</p>
                       </td>
                       <td className="px-6 py-4 text-sm font-black text-bg-black space-y-2">
-                        <p>$21,000</p>
-                        <p>$1,050</p>
+                        <p>${totalSpent.toLocaleString()}</p>
+                        <p>${(totalSpent * 0.05).toLocaleString()}</p>
                         <p className="text-error">-$50</p>
                       </td>
                     </tr>
@@ -168,7 +181,7 @@ export default function BillingPage() {
                         </div>
                       </td>
                       <td colSpan={2} className="px-6 py-6 text-right relative">
-                        <span className="text-3xl font-black tracking-tighter">$22,000</span>
+                        <span className="text-3xl font-black tracking-tighter">${(totalSpent * 1.05 - 50).toLocaleString()}</span>
                         <div className="absolute -top-4 -right-2 px-4 py-2 bg-[#F59E0B] text-white rounded-full font-black text-[10px] uppercase tracking-widest shadow-lg border-2 border-bg-black">
                           Cute Goat
                         </div>
@@ -219,37 +232,40 @@ export default function BillingPage() {
                   <circle 
                     cx="50" cy="50" r="40" 
                     fill="transparent" 
-                    stroke="#EF4444" 
+                    stroke={isOverBudget ? "#EF4444" : "#10B981"} 
                     strokeWidth="12" 
                     strokeDasharray="251.2" 
-                    strokeDashoffset="25.12" 
+                    strokeDashoffset={251.2 - (Math.min(spentPercentage, 100) / 100) * 251.2} 
                     strokeLinecap="round"
                     className="transition-all duration-1000"
                   />
                 </svg>
                 <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                  <span className="text-3xl font-black tracking-tighter text-error">110%</span>
-                  <span className="text-[8px] font-black uppercase tracking-widest text-text-paragraph">Over Budget</span>
+                  <span className={`text-3xl font-black tracking-tighter ${isOverBudget ? 'text-error' : 'text-emerald-600'}`}>{spentPercentage}%</span>
+                  <span className="text-[8px] font-black uppercase tracking-widest text-text-paragraph">{isOverBudget ? 'Over Budget' : 'Spent'}</span>
                 </div>
               </div>
 
               <div className="space-y-5 mb-10">
                 <div className="flex justify-between items-center p-4 rounded-2xl bg-bg-secondary/40 border border-stroke">
                   <span className="text-xs font-bold text-text-paragraph uppercase tracking-widest">Total Budget</span>
-                  <span className="font-bold">$20,000</span>
+                  <span className="font-bold">${totalBudget.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between items-center p-4 rounded-2xl bg-bg-secondary/40 border border-stroke">
                   <span className="text-xs font-bold text-text-paragraph uppercase tracking-widest">Total Spent</span>
-                  <span className="font-bold">$22,000</span>
+                  <span className="font-bold">${totalSpent.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between items-center p-4 rounded-2xl bg-error/5 border border-error/20">
-                  <span className="text-xs font-bold text-error uppercase tracking-widest">Remaining</span>
-                  <span className="font-bold text-error">-$2,000</span>
+                <div className={`flex justify-between items-center p-4 rounded-2xl border ${isOverBudget ? 'bg-error/5 border-error/20' : 'bg-emerald-50/50 border-emerald-100'}`}>
+                  <span className={`text-xs font-bold uppercase tracking-widest ${isOverBudget ? 'text-error' : 'text-emerald-600'}`}>{isOverBudget ? 'Deficit' : 'Remaining'}</span>
+                  <span className={`font-bold ${isOverBudget ? 'text-error' : 'text-emerald-600'}`}>${Math.abs(remaining).toLocaleString()}</span>
                 </div>
               </div>
 
-              <button className="w-full py-4 rounded-2xl border-2 border-bg-black text-bg-black font-bold text-sm hover:bg-bg-black hover:text-white transition-all shadow-sm">
-                View Full Budget
+              <button 
+                onClick={handleEditBudget}
+                className="w-full py-4 rounded-2xl border-2 border-bg-black text-bg-black font-bold text-sm hover:bg-bg-black hover:text-white transition-all shadow-sm"
+              >
+                Manage Budget
               </button>
             </div>
 
